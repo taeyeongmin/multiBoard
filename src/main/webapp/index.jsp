@@ -13,11 +13,13 @@
 #navContainer ul{list-style: none; padding-left:20px; height: 100%}
 </style>
 
+
 <div id=contentContainer>
 	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
 	<div id="content">
 		<div>1</div>
 		<div>2</div>
+		
 	</div>
 </div>
 

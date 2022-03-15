@@ -4,4 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+	<insert id="memberEnroll">
+	
+		insert into
+			member
+		values(
+			#{id}
+			,#{name}
+			,#{pwd}
+			,#{birthDate}
+			,#{nick}
+			,default
+			,null
+		)
+	</insert>
+	
 </mapper>
