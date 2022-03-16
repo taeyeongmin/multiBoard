@@ -14,7 +14,6 @@
 			,#{name}
 			,#{pwd}
 			,#{birthDate}
-			,#{nick}
 			,default
 			,null
 		)

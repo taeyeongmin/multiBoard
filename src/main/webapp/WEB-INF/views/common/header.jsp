@@ -20,7 +20,11 @@
 
 
 </head>
- 
+<c:if test="${not empty msg}">
+<script>
+alert("${msg}");
+</script>
+</c:if>
 <body>
 	<div id="wrap">
 		<div id="header">

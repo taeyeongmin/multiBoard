@@ -14,7 +14,6 @@ public class Member {
 	private String name;
 	private String pwd;
 	private String birthDate;
-	private String nick;
 	private Date enrollDate;
 	private Date delDate;
 	

@@ -1,8 +1,27 @@
 
-select
-    *
-from
-    member;
+--=====================================
+-- 테이블 생성
+--=====================================
+ -- 회원(member) 테이블 생성
+ create table member(
+    id varchar2(30),
+    name varchar2(15) not null,
+    pwd varchar2(30) not null,
+    birth_date date not null,
+    enroll_date date default sysdate not null,
+    del_date date null,
+    
+    constraint pk_member_id primary key(id)
+ );
+ 
+ -- 권한(authentication)  테이블 생성
+ create table authentication(
+    authority char(2),
+    id varchar2(30),
+    
+    constraint pk_authentication_authority primary key(authority),
+    constraint fk_authentication_id foreign key(id) references member(id)
+ );
     
 -- Board 테이블 생성    
 CREATE TABLE  board (
@@ -23,6 +42,17 @@ CREATE TABLE  board (
      constraint ch_board_board_type check(board_type in('F','L'))
 );
 
+
+
+
+--=====================================================
+
+select
+    id
+from
+    member
+where
+    id='xodud';
 
 select * from board;
 
