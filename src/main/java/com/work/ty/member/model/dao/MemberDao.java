@@ -7,4 +7,7 @@ public interface MemberDao {
 	// 회원가입 post요청
 	int memberEnroll(Member member);
 
+	// 아아디 중복검사
+	Member idDuplicate(String inputId);
+
 }

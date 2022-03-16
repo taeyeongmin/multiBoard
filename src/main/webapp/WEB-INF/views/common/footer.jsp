@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
     
     
-    
-		</section>
+		
 		<footer>
-			<h1>footer</h1>
+			<h3>COPYRIGHT 2022 COREMETHOD. ALL RIGHTS RESERVED.</h3>
 		</footer>
 	</div>
 </body>
+
 </html>

@@ -17,4 +17,10 @@ public class MemberDaoImpl implements MemberDao {
 	public int memberEnroll(Member member) {
 		return session.insert("member.memberEnroll",member);
 	}
+
+	// 아이디 중복검사
+	@Override
+	public Member idDuplicate(String inputId) {
+		return session.selectOne("member.idDuplicate",inputId);
+	}
 }

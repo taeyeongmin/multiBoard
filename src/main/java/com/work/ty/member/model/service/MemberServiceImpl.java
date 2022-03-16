@@ -31,5 +31,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+
+	// 아이디 중복검사
+	@Override
+	public Member idDuplecate(String inputId) {
+		return memberDao.idDuplicate(inputId);
+	}
 	
 }

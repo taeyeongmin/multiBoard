@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+	<!-- 회원가입  -->
 	<insert id="memberEnroll">
 	
 		insert into
@@ -18,5 +19,16 @@
 			,null
 		)
 	</insert>
+	
+	<!-- 아이디 중복검사 : 사용자 입력값을 member 테이블에서 조회 한 뒤 입력값과 아이디가 동일하다면 객체 리턴  -->
+	<select id="idDuplicate" resultType="com.work.ty.member.model.vo.Member">
+		select
+			id
+		from
+			member
+		where
+			id = #{inputId}
+			
+	</select>
 	
 </mapper>

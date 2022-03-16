@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <title>Board</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link type="text/css" rel="stylesheet" href="../css/style.css">  
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div id="wrap">		
+		<div id="cont">
+			<nav>
+				<h2><i class="fas fa-edit mr10"></i>게시판 생성</h2>
+				<ul>
+					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명1</a></li>
+					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명2</a></li>
+					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명3</a></li>				
+				</ul>
+			</nav>
+			<div class="contents">
+				<div class="container">
+					<div class="inner">
+						<h3>게시판 생성</h3>
+						<table class="board">
+							<colgroup>
+							<col width="15%">
+							<col width="*">								         
+							</colgroup>               
+							<tbody>
+								<tr>
+									<th>게시판명</th>
+									<td><input type="text" placeholder="게시판 이름을 입력해주세요" style="width:500px;"></td>										                                             
+								</tr>  
+								<tr>
+									<th>게시판 타입</th>
+									<td>
+										<select id="" name="" style="width:500px;">
+											<option value="">리스트형</option>
+										</select>
+								</td>										                                            
+								</tr>    
+								<tr>
+									<th>첨부파일갯수</th>
+									<td>
+										<select id="" name="" style="width:500px;">
+											<option value="">0</option>
+										</select>
+									</td>										                                            
+								</tr> 
+								<tr>
+									<th>댓글여부</th>
+									<td>
+										<input type="radio" id="radio1"><label for="radio1" class="mr30">예</label><input type="radio" id="radio1"><label for="radio1">아니오</label>
+									</td>										                                            
+								</tr>
+								<tr class="pd20">
+									<th>게사판 공개</th>
+									<td>
+										<input type="radio" id="radio1"><label for="radio1" class="mr30">예</label><input type="radio" id="radio1"><label for="radio1">아니오</label>
+									</td>										                                            
+								</tr>
+							</tbody>
+						</table>
+						<div class="buttonframe">
+							<button class="custom-btn btn-ani3 btenw"><span>등록</span></button>
+						</div>
+					</div>				
+				</div>
+			</div>
+		</div>
+		<footer>
+			COPYRIGHT 2022 COREMETHOD. ALL RIGHTS RESERVED.
+		</footer>
+	</div>
+</body>
+
+</html>
