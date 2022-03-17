@@ -13,4 +13,7 @@ public interface BoardDao {
 	// 게시판 추가
 	int insertBoard(Board board);
 
+	// board 객체 가져오기
+	Board selectBoard(String boardCode);
+
 }

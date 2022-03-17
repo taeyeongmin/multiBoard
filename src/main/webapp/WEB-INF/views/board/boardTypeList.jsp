@@ -14,8 +14,8 @@
 			<div class="contents">
 				<div class="container">
 					<div class="inner">
-						<h3>메인 페이지</h3>
-						<div class="new_registerframe"><button class="button_type boardregister">신규등록</button></div>
+						<h3>리스트형 게시판</h3>
+						<div class="new_registerframe"><button id="createPostBtn" class="button_type boardregister">신규등록</button></div>
 						<div class="search_inner">            
 			            	<!--search fiels st-->
 							<div class="search_col">
@@ -51,24 +51,20 @@
 				                <thead>
 				                	<tr>
 					                    <th></th>
-					                    <th>순번</th>
 					                    <th>제목</th>
 					                    <th>등록일</th>
 					                    <th>등록자</th>
-					                    <th>조회수</th>                                  
+					                    <th>좋아요</th>                                  
 				                	</tr>
 				                </thead>
 			               	 	<tbody>
 			                    <tr>
 				                    <td class="center"><input type="checkbox" id="ch01"><label for="ch01"></label></td>
-				                    <td>7</td>
 				                    <td><a href="#a">제목이 들어가는 자리</a></td>
 				                    <td class="center">2022/03/01</td>
 				                    <td class="center">홍길동</td>
 				                    <td class="center">1,234</td>
-			                    </tr>
-			    
-			      				                  
+			                    </tr>		    		      				                  
 			                </tbody>
 		                </table>
 						<div class="paging-wrap">

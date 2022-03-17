@@ -41,4 +41,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		return result;
 	}
+
+	// board 객체 하나 가져오기
+	@Override
+	public Board selectBoard(String boardCode) {
+		return boardDao.selectBoard(boardCode);
+	}
 }

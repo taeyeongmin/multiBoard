@@ -13,15 +13,7 @@
     
     constraint pk_member_id primary key(id)
  );
- 
- -- 권한(authentication)  테이블 생성
- create table authentication(
-    authority char(2),
-    id varchar2(30),
-    
-    constraint pk_authentication_authority primary key(authority,id),
-    constraint fk_authentication_id foreign key(id) references member(id)
- );
+
     
 
 -- Board 테이블 생성    

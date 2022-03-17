@@ -55,14 +55,15 @@ $(()=>{
 			/* 반복문 내에서 boardName 값을 담을 함수 선언 */
 			
 
-			/* 변수 list에 boardList 내의 boardName 값을 담아준다 */
+			/* 변수 list에 boardList 내의 boardName 값을 담아준다. 해당 링크에 각 게시판의 코드값을 넣어줘 게시판 분기처리를 한다. */
 			let list = "";
 			for(let i = 0; i < boardList.length; i++){
-				list = list + `<li class="board-title"><a href="${pageContext.request.contextPath}/?boardCode=${boardList[i].boardCode}">\${boardList[i].boardName}</a></li>`;	
-			}
+				list = list + `<li class="board-title"><a href="${pageContext.request.contextPath}/board/boardMove/?boardCode=\${boardList[i].boardCode}">
+				\${boardList[i].boardName}</a></li>`;	
+			} 
 
 			/* #navContainer의 ul태그 내부에 list에 담아둔 문자열을 찍는다. */
-			
+	
 			$("#navBoardList").append(list);
 			
 			
@@ -72,6 +73,16 @@ $(()=>{
 	});
 	
 });
+
+
+// 게시물 작성 버튼 클릭 이벤트
+$("#createPostBtn").click(e=>{
+	location.href="/post/"
+});
+
+
+
+
 
 </script>
 

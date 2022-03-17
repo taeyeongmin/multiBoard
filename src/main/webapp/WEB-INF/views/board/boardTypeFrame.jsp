@@ -14,7 +14,7 @@
 			<div class="contents">
 				<div class="container">
 					<div class="inner">
-						<h3>메인 페이지</h3>
+						<h3>액자형 게시판</h3>
 						<div class="new_registerframe"><button class="button_type boardregister">신규등록</button></div>
 						<div class="search_inner">            
 			            	<!--search fiels st-->
@@ -66,9 +66,7 @@
 				                    <td class="center">2022/03/01</td>
 				                    <td class="center">홍길동</td>
 				                    <td class="center">1,234</td>
-			                    </tr>
-			    
-			      				                  
+			                    </tr>		    		      				                  
 			                </tbody>
 		                </table>
 						<div class="paging-wrap">

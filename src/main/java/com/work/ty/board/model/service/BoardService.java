@@ -13,4 +13,7 @@ public interface BoardService {
 	// 게시판 추가
 	int insertBoard(Board board);
 
+	// board 객체 하나 가져오기
+	Board selectBoard(String boardCode);
+
 }

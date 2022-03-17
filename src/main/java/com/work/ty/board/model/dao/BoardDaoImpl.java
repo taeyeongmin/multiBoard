@@ -26,4 +26,13 @@ public class BoardDaoImpl implements BoardDao {
 	public int insertBoard(Board board) {
 		return session.insert("board.insertBoard",board);
 	}
+	
+	// board 객체 가져오기
+	@Override
+	public Board selectBoard(String boardCode) {
+		return session.selectOne("board.selectBoard",boardCode);
+	}
+
+	
+	
 }

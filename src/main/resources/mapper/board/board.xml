@@ -40,7 +40,29 @@ values(
 
 </insert>
 
+<!-- board 객체 하나 가져오기 -->
+<select id="selectBoard" resultType="com.work.ty.board.model.vo.Board">
+	select
+		board_code
+		,id
+		,board_name
+		,board_type
+		,board_yn
+		,attach_yn
+		,attach_count
+		,pagebar_count
+		,post_count
+		,comment_yn
+	from
+		board
+	where
+		board_code = #{board_code}
+</select>
+	
 
+	
+	
+	
 	
 </mapper>
 

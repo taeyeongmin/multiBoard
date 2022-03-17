@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -85,7 +86,33 @@ public class BoardController {
 		return "redirect:/";
 	}
 	
+	// 해당 게시판 이동
+	@GetMapping("/boardMove")
+	public String getBoard(
+				@RequestParam String boardCode
+			) {
+		log.debug("boardCode = {}", boardCode);
+		
+		// return 해줄 경로를 담을 변수 선언 및 초기화
+		String location = "";
+		
+		// boardCode에 해당하는 board객체 가져오기
+		Board board = boardService.selectBoard(boardCode);
+		
+		// 가져온 board 객체 로깅
+		log.debug("board = {}",board);
+		
+		// 가져온 board 객체에서 타입을 변수에 담아준 뒤 해당 값을 사용해 리턴 경로를 분기해준다.
+		String boardType = board.getBoardType();
+		
+		if("F".equals(boardType)) {
+			location = "/board/boardTypeFrame";
+		}else {
+			location = "/board/boardTypeList";			
+		}
 	
+		return location;
+	}
 	
 	
 	
