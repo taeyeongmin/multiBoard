@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+<!-- boardList 가져오기 -->
+<select id="boardList" resultType="com.work.ty.board.model.vo.Board">
+select
+	board_code
+	,id
+	,board_name
+	,board_type
+	,board_yn
+	,attach_yn
+	,attach_count
+	,pagebar_count
+	,post_count
+	,comment_yn
+from
+	board
+</select>
+
+<!-- 게시판 추가(board) -->
+<insert id = "insertBoard">
+insert into
+	board
+values(
+	'board' || '_' || seq_board_code.nextval
+	,#{id}
+	,#{boardName}
+	,#{boardType}
+	,#{boardYn}
+	,#{attachYn}
+	,#{attachCount}
+	,#{pagebarCount}	
+	,#{postCount}	
+	,#{commentYn}	
+)
+
+</insert>
+
+
+	
+</mapper>
+

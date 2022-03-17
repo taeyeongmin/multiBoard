@@ -5,28 +5,33 @@
 	<jsp:param value="CORE_METHOD" name="title"/>
 </jsp:include>
 		<div id="loginCont">
+			<form
+			 	action="${pageContext.request.contextPath }/member/memberLogin.do"
+			 	method="POST">
 			<div id="loginWrap">
 			    <div class="login-bx">           
 		            <div class="loginframe">
 		                <div class="logininbx">
 		                    <h1>LOGIN</h1>
 		                    <ul>
-		                        <li><label for="id">Member ID</label><input type="text" id="id" class="block"></li>
-		                        <li><label for="pwd">Password</label><input type="text" id="pwd" class="block"></li>
+		                        <li><label for="id">Member ID</label><input type="text" id="id" name="id" class="block"></li>
+		                        <li><label for="pwd">Password</label><input type="text" id="pwd" name="pwd" class="block"></li>
 		                        <!-- <li><input type="checkbox" id="remember"><label for="remember">Remember me</label><span><a href="#a">Forgot Password</a></span></li> -->
 		                    </ul>
 		                    <div class="btnbox">
 			                    <button id="loginBtn" class="custom-btn btn-ani1"><span>Login</span></button>
-			                    <button id="registerBtn"class="custom-btn btn-ani1"><span>Register</span></button>
+			                    <button id="registerBtn"class="custom-btn btn-ani1" type="button"><span>Register</span></button>
 		                    </div>                   
 		                </div>                
 		            </div>
 				</div>
 			</div>
+			</form>
 		</div>
 		
 		<script>
 		$("#registerBtn").click(e=>{
+			
 			location.href="${pageContext.request.contextPath}/member/memberEnroll.do";
 		});
 		</script>

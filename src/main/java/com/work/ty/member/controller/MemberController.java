@@ -3,6 +3,9 @@ package com.work.ty.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.work.ty.member.model.service.MemberService;
 import com.work.ty.member.model.vo.Member;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +34,58 @@ public class MemberController {
 	@GetMapping("/memberLogin.do")
 	public void getLogin() {
 		
+	}
+	
+	// 로그인 처리
+	@PostMapping("/memberLogin.do")
+	public String postLogin(
+			Member member
+			,RedirectAttributes redirectAttr
+			,HttpServletRequest request
+			) {
+		
+		// redirect 경로를 담을 변수
+		String location = "redirect:/";
+		// 응답 메세지 담을 변수
+		String msg = "";
+		
+		// session 객체 생성
+		HttpSession session = request.getSession();
+		
+		// 사용자 입력값 로깅
+		log.debug("member = {}",member);
+		
+		// 서비스 로직 
+		Member loginMember = memberService.memberLogin(member);
+		
+		// 리턴 된 회원 객체 로깅
+		log.debug("loginMember = {}",loginMember);
+		
+		
+		// 입력한 아아디와 일치하는 회원이 있는 경우 비밀번호 체크
+		if(loginMember != null) {
+			// 입력한 비밀번호와 객체의 비밀번호가 일치하는 경우 session에 회원정보 저장
+			if(member.getPwd().equals(loginMember.getPwd())) {
+				// session 객체에 로그인한 회원정보 저장
+				session.setAttribute("loginMember", loginMember);
+				msg = "["+loginMember.getName() +"]님 안녕하세요";
+			}
+			else {
+				msg = "비밀번호가 일치하지 않습니다.";
+			}
+		// 입력한 아이디와 동일한 회원이 없는 경우
+		}else {
+			msg = "입력한 아이디는 존재하지 않습니다.";
+			
+			// 입력한 아이디가 존재하지 않는다면 다시 로그인 페이지로 redirect 
+			location = "redirect:/member/memberLogin.do";	
+		}
+		
+		// msg 변수에 담은 문자열을 redirectAttributes 객체에 담아 1회성 session 객체로 사용한다.
+		redirectAttr.addFlashAttribute("msg",msg);
+		
+		// 지정한 경로로 redirect 처리
+		return location;
 	}
 	
 	// 회원가입 페이지 이동
@@ -63,8 +119,28 @@ public class MemberController {
 		redirectAttr.addFlashAttribute("msg",msg);
 		log.debug("msg = {} ",msg);
 
+		// 로그인 페이지로 이동
+		return "redirect:/member/memberLogin.do";
+	}
+	// 로그아웃 처리
+	@GetMapping("/memberLogout.do")
+	public String memberLogout(
+				HttpServletRequest request
+				,RedirectAttributes redirectAttr
+			) {
+		// session객체 생성
+		HttpSession session = request.getSession();
+		
+		// 현재 session에 저장된 값 지우기
+		session.invalidate();
+		
+		// 사용자 응답 메세지
+		redirectAttr.addFlashAttribute("msg","로그아웃 완료.");
+		
+		// index 페이지로 이동
 		return "redirect:/";
 	}
+	
 	
 	// 아아디 중복검사 비동기처리
 	@ResponseBody

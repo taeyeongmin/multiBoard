@@ -14,7 +14,7 @@
 					onsubmit="return validation()" 
 					>
 					<div class="mem_copy">필수 입력사항입니다.</div>
-					<input type="text" id="posibleCode" />
+					<input type="hidden" id="posibleCode" />
 					<table class="register_type">
 						<colgroup>
 							<col width="14%">
@@ -45,16 +45,6 @@
 								<th><span>생년월일</span></th>
 								<td><input type="date" id="birthDate" name="birthDate" style="width:500px;"></td>										                                            
 							</tr> 
-							<tr>
-								<th><span>회원유형</span></th>
-								<td>
-									<select id="memberType" name="memberType" style="width:500px;">
-										<option value="0"> === 회원 유형 선택 === </option>
-										<option value="admin">관리자</option>
-										<option value="general">일반회원</option>
-									</select>
-								</td>										                                            
-							</tr>
 						</tbody>
 					</table>
 					<div class="buttonframe">
@@ -110,13 +100,12 @@
 				var pwd = $("#pwd").val();
 				var name = $("#name").val();
 				var checkPwd = $("#checkPwd").val();
-				var memberType = $("#memberType").val();
 				var birthDate = $("#birthDate").val();
 				var posibleCode = $("#posibleCode").val();
 				
 				// 아이디 체크
-				if(!/^[a-z0-9]{4,12}$/.test(id)){
-					alert("아아디는 4글자 이상 12글자 이하의 영소문자와 숫자의 조합으로 입력해주세요");
+				if(!/^[a-zA-Z0-9]{4,12}$/.test(id)){
+					alert("아아디는 4글자 이상 12글자 이하의 영문자와 숫자의 조합으로 입력해주세요");
 					$("#id").focus();
 					return false;
 				}
@@ -147,11 +136,6 @@
 					return false;
 				}
 				
-				// 회원 유형 체크
-				if(memberType == 0){
-					alert("회원 유형을 선택해주세요.");
-					return false;
-				}
 				
 				// 중복검사 체크
 				if(posibleCode == 0){

@@ -16,6 +16,7 @@
 			,#{birthDate}
 			,default
 			,null
+			,default
 		)
 	</insert>
 	
@@ -29,5 +30,22 @@
 			id = #{inputId}
 			
 	</select>
+	
+	<!-- 로그인 처리 : 사용자가 입력한 아이디 값과 동일한 회원이 존재한다면 해당 member객체 리턴 -->
+	<select id="memberLogin" resultType="com.work.ty.member.model.vo.Member">
+		select
+			id
+			,pwd
+			,name
+			,birth_date
+			,authority
+		from
+			member
+		where
+			id = #{id}
+			
+	</select>
+	
+	
 	
 </mapper>

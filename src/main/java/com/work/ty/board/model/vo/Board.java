@@ -6,11 +6,12 @@ import lombok.Data;
 public class Board {
 	private String boardCode;
 	private String id;
-	private String boardType;
 	private String boardName;
+	private String boardType;
+	private String boardYn;
+	private String attachYn;
+	private int attachCount;
 	private int pagebarCount;
 	private int postCount;
 	private String commentYn;
-	private String attachYn;
-	private int fileCount;
 }

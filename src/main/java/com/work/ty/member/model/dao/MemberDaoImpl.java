@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.work.ty.member.model.vo.Member;
 
+
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
@@ -22,5 +23,17 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member idDuplicate(String inputId) {
 		return session.selectOne("member.idDuplicate",inputId);
+	}
+
+	// 로그인 처리
+	@Override
+	public Member memberLogin(Member member) {
+		return session.selectOne("member.memberLogin",member);
+	}
+
+	// 기본 회원 권한 추가
+	@Override
+	public int authorityInsert(Member member) {
+		return session.insert("member.authorityInsert",member);
 	}
 }

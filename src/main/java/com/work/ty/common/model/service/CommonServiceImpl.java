@@ -17,9 +17,6 @@ public class CommonServiceImpl implements CommonService {
 	@Autowired
 	private CommonDao commonDao;
 
-	// board 리스트 가져오기
-	@Override
-	public List<Board> navLoding() {
-		return commonDao.navLoding();
-	}
+	
+	
 }

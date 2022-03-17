@@ -29,14 +29,19 @@ alert("${msg}");
 	<div id="wrap">
 		<div id="header">
 			<span id="mainTitle">CORE_METHOD</span>
-			<a id="loginLink" href="${pageContext.request.contextPath }/member/memberLogin.do">로그인</a>
+			<!-- 로그인 회원 객체가 없는 경우 -->
+			<c:if test="${empty loginMember }">
+				<a id="loginLink" class="login-content" href="${pageContext.request.contextPath }/member/memberLogin.do">로그인</a>
+			</c:if>
+			<!-- 로그인 회원 객체가 있는 경우 -->
+			<c:if test="${not empty loginMember }">
+				<span id="afterLogin" class="login-content">[${loginMember.getName()}]
+					<button id="logoutBtn">로그아웃</button>
+					<span id="loginMent">님 안녕하세요</span>
+				</span>
+			</c:if>
+			<span class ="login-content"></span>
 		</div>		
 		
 		
-<script>
-$("#mainTitle").click(e=>{
-	console.log("mainTitle 클릭");
-	location.href="${pageContext.request.contextPath}/";
-}); 
 
-</script>

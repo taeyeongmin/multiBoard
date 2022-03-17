@@ -7,6 +7,7 @@ import com.work.ty.member.exception.SqlException;
 import com.work.ty.member.model.dao.MemberDao;
 import com.work.ty.member.model.vo.Member;
 
+
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -23,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			// 서비스 로직
 			result = memberDao.memberEnroll(member);
+			log.debug("회원 추가 성공");
 		} catch (Exception e) {
 			// error log 출력
 			log.error(e.getMessage());
@@ -36,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member idDuplecate(String inputId) {
 		return memberDao.idDuplicate(inputId);
+	}
+
+	// 로그인 처리
+	@Override
+	public Member memberLogin(Member member) {
+		return memberDao.memberLogin(member);
 	}
 	
 }

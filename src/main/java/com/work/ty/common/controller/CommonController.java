@@ -24,21 +24,5 @@ public class CommonController {
 	private CommonService commonService;
 	
 
-	// navigation 로딩 메소드
-	@GetMapping("/navLoding.do")
-	@ResponseBody
-	public Map<String,Object> nav(){
-		Map<String,Object>map = new HashMap<>();
-		
-		// 서비스 로직
-		List<Board>boardList = commonService.navLoding();
-		
-		// 가져온 boardList 로깅
-		log.debug("boardList = {}",boardList);
-		
-		// map에 보드 리스트를 넣어준 뒤 응답처리.
-		map.put("boardList",boardList);
-		return map;
-	};
 	
 }

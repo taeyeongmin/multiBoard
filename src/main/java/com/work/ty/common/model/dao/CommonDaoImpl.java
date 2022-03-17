@@ -14,9 +14,5 @@ public class CommonDaoImpl implements CommonDao {
 	@Autowired
 	private SqlSession session;
 
-	// board 리스트 가져오기
-	@Override
-	public List<Board> navLoding() {
-		return session.selectList("board.navLoding");
-	}
+
 }

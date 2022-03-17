@@ -7,19 +7,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="CORE_METHOD" name="title"/>
 </jsp:include>
-	<div id="cont">
-			<nav>
-				<h2><i class="fas fa-edit mr10"></i>게시판 생성</h2>
-				<ul>
-					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명1</a></li>
-					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명2</a></li>
-					<li><a href="#a"><i class="fa-regular fa-address-book mr10"></i>게시판명3</a></li>				
-				</ul>
-			</nav>
+		<div id="cont">
+			<!-- nav 가져오기  -->
+			<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include> 
+			
 			<div class="contents">
 				<div class="container">
 					<div class="inner">
-						<h3>게시판명1</h3>
+						<h3>메인 페이지</h3>
 						<div class="new_registerframe"><button class="button_type boardregister">신규등록</button></div>
 						<div class="search_inner">            
 			            	<!--search fiels st-->
