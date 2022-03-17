@@ -62,6 +62,7 @@ $(()=>{
 			}
 
 			/* #navContainer의 ul태그 내부에 list에 담아둔 문자열을 찍는다. */
+			
 			$("#navBoardList").append(list);
 			
 			
