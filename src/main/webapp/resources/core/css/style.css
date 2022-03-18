@@ -3,6 +3,24 @@
 
 
 /************************************************
+	insertBoard
+************************************************/
+#boardName,#boardType {width:300px}
+#duplicateBoardName{
+	width: 104px;
+    height: 40px;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    color: #121212ad;
+    font-weight: 600;
+    background-color: #0000ff87;color: white;
+}
+#buttonContainer{border:none}    
+
+
+
+/************************************************
 	nav
 ************************************************/
 #createBoardBtn{

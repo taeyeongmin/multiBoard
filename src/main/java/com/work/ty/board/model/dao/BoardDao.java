@@ -16,4 +16,7 @@ public interface BoardDao {
 	// board 객체 가져오기
 	Board selectBoard(String boardCode);
 
+	// 게시판명 중복검사
+	Board boardNameDuplicate(String boardName);
+
 }

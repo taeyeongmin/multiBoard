@@ -75,9 +75,30 @@ $(()=>{
 });
 
 
+// 게시판 작성시 첨부파일 비허용시 첨부파일갯수에 대한 입력 방지
+$("input[name=attachYn]").change(e=>{
+	
+	// '아니요' 체크시
+	if($("#attachYn2").prop("checked") == true){
+		/* 첨부파일 갯수 입력 막기 및 배경 색 변경*/
+		$("#attachCount").prop("readonly","readonly");
+		$("#attachCount").css("background-color","#80808075");
+	}
+	
+	// '예' 체크시
+	if($("#attachYn1").prop("checked") == true){
+		/* 첨부파일 갯수 입력 막기 해제 및 배경 색 변경*/
+		$("#attachCount").prop("readonly","");
+		$("#attachCount").css("background-color","white");
+	}
+	
+	
+});
+
+
 // 게시물 작성 버튼 클릭 이벤트
 $("#createPostBtn").click(e=>{
-	location.href="/post/"
+	location.href="${pageContext.request.contextPath}/post/createPost.do";
 });
 
 

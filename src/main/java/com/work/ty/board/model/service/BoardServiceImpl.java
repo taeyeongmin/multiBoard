@@ -47,4 +47,10 @@ public class BoardServiceImpl implements BoardService {
 	public Board selectBoard(String boardCode) {
 		return boardDao.selectBoard(boardCode);
 	}
+
+	// 게시판명 중복검사
+	@Override
+	public Board boardNameDuplicate(String boardName) {
+		return boardDao.boardNameDuplicate(boardName);
+	}
 }
