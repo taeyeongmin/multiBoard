@@ -33,7 +33,7 @@ public class BoardDaoImpl implements BoardDao {
 		return session.selectOne("board.selectBoard",boardCode);
 	}
 
-	// 게시판명 중복검사s
+	// 게시판명 중복검사
 	@Override
 	public Board boardNameDuplicate(String boardName) {
 		return session.selectOne("board.boardNameDuplicate",boardName);

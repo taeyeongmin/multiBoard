@@ -10,11 +10,11 @@
 		<div id="cont">
 			<!-- nav 가져오기  -->
 			<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include> 
-			
+
 			<div class="contents">
 				<div class="container">
 					<div class="inner">
-						<h3>리스트형 게시판</h3>
+						<h3>리스트형 게시판</h3>				
 						<div class="new_registerframe"><button id="createPostBtn" class="button_type boardregister">신규등록</button></div>
 						<div class="search_inner">            
 			            	<!--search fiels st-->

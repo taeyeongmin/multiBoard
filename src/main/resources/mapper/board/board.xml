@@ -58,8 +58,18 @@ values(
 	where
 		board_code = #{board_code}
 </select>
-	
 
+<!-- 게시판명 중복검사 -->
+<select id="boardNameDuplicate" resultType="com.work.ty.board.model.vo.Board">
+
+	select
+		board_name
+	from
+		board
+	where
+		board_name = #{boardName}
+		
+</select>
 	
 	
 	

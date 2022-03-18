@@ -89,7 +89,8 @@ public class BoardController {
 	// 해당 게시판 이동
 	@GetMapping("/boardMove")
 	public String getBoard(
-				@RequestParam String boardCode
+				@RequestParam String boardCode,
+				HttpServletRequest request
 			) {
 		log.debug("boardCode = {}", boardCode);
 		
@@ -110,6 +111,14 @@ public class BoardController {
 		}else {
 			location = "/board/boardTypeList";			
 		}
+		
+		String boardYn = board.getBoardYn();
+		
+		// session에 boardCode값을 넣어줘 게시물 생성할 때 해당 게시판의 정보를 가져와 사용한다. 게시판 공개여부 정보도 저장
+		HttpSession session = request.getSession();
+		session.setAttribute("boardCode", boardCode);
+		session.setAttribute("boardYn", boardYn);
+		
 	
 		return location;
 	}

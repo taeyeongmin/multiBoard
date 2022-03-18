@@ -23,6 +23,7 @@
 							<tbody>
 								<tr>
 									<th>제목</th>
+									${board}
 									<td><input type="text" class="block"></td>										                                             
 								</tr>  
 								<tr>
@@ -54,7 +55,6 @@
 		
 
 	<script>
-	
 	
 	/* input 태그에 파일명 넣어주기 (제공) */
 	$(document).ready(function(){

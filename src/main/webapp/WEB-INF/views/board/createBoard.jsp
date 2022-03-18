@@ -18,7 +18,13 @@
 							method="POST"
 							onsubmit="return duplicateBoard()"
 							>
+							
 							<h3>게시판 생성</h3>
+							
+							<!-- 유효성 검사에서 사용할 값 -->
+							<input type="hidden" id="posibleCode" />
+							<!-- 유효성 검사에서 권한검사에 사용할 값 -->
+							<input type="hidden" id="authorityCheck" value="${loginMember.authority }" />
 							<table class="board">
 								<colgroup>
 								<col width="15%">
@@ -28,8 +34,11 @@
 									<tr>
 										<th>게시판명</th>
 										<td><input type="text" id="boardName" name="boardName" placeholder="게시판 이름을 입력해주세요"></td>	
-										<td id="buttonContainer"><button id="duplicateBoardName">중복검사</button></td>									                                             
+										<td id="buttonContainer"><button id="duplicateBoardName" type="button">중복검사</button></td>									                                             
 									</tr>  
+									<tr id="boardDupleMsg">
+					
+									</tr>
 									<tr>
 										<th>게시판 타입</th>
 										<td>
@@ -107,13 +116,13 @@
 				console.log(data);
 				
 				/* #idDupleMsg 태그의 내용을 해당 문자열로 채운다. */
-				$("#idDupleMsg").html(`<th>사용가능 여부</th><td><span>\${data.msg}</span></td>`);
+				$("#boardDupleMsg").html(`<th>사용가능 여부</th><td><span>\${data.msg}</span></td>`);
 				
 				/* controller에서 받은 posibleCode값에 따라 문자열의 색 분기처리 */
 				if(data.posibleCode == 1){
-					$("#idDupleMsg span").css("color","blue");
+					$("#boardDupleMsg span").css("color","blue");
 				}else{
-					$("#idDupleMsg span").css("color","red");
+					$("#boardDupleMsg span").css("color","red");
 					
 				}
 				/* form 유효성 검사를 할 때 사용할 posibleCode값을 넣어준다. */
@@ -124,32 +133,66 @@
 		});
 	});
 	
+	/* 중복검사 후 입렧한 이름을 바꿀 경우를 대비해 boardName값이 바뀌면 posibleCode을 초기화한다.  */
+	$("#boardName").change(e=>{
+		console.log("boardName 변경");
+		
+		/* posibleCode 값 초기화 */
+		$("#posibleCode").val(0);
+	});
+	
 	
 	// 게시판 생성 유효성 검사
 	function duplicateBoard(){
 		
-		// 게시판 공개 유효성 검사
-		if($("input[name=boardYn]").prop("checked") == false){
-			console.log("게시판 체크 여부 = ", $("input[name=boardYn]").prop("checked") == false);
-			alert(" 게시판 공개 여부를 선택해주세요.");
-			return false;			
-		}
-		
-		// 첨부파일 허용
-		if($("input[name=attachYn]").prop("checked") == false){
-			console.log("첨부파일 체크 여부 = ", $("input[name=attachYn]").prop("checked") == false);
-			alert("첨부파일 허용 여부를 선택해주세요.");
-			return false;			
-		}
-		
 		// 게시판명 유효성 검사
 		if($("#boardName").val() == ""){
-			alert("아이디를 확인해주세요");
+			alert("게시판명을 확인해주세요");
 			$("#boardName").focus();
 			return false;
 		}
 		
+		// 게시판 공개 유효성 검사 - 예,아니요 둘다 선택이 안되어 있는 경우
+		if(  $("#boardYn1").prop("checked") == false && $("#boardYn2").prop("checked") == false ) {
+			
+			console.log("게시판 체크 여부 = ", $("input[name=boardYn]").prop("checked"));
+			alert(" 게시판 공개 여부를 선택해주세요.");
+			return false;			
+		}
 		
+		// 첨부파일 허용 - 예,아니요 둘다 선택이 안되어 있는 경우
+		if( $("#attachYn1").prop("checked") == false && $("#attachYn2").prop("checked") == false ){
+			
+			console.log("첨부파일 체크 여부 = ", $("input[name=attachYn]").prop("checked"));
+			
+			alert("첨부파일 허용 여부를 선택해주세요.");
+			return false;			
+		}
+		
+		// 중복검사 체크
+		if($("#posibleCode").val() == 0){
+			alert("중복검사를 실행해주세요");
+			return false;
+		}
+		
+		// 댓글 허용
+		if( $("#commentYn1").prop("checked") == false && $("#commentYn2").prop("checked") == false  ){
+			console.log("첨부파일 체크 여부 = ", $("input[name=commentYn]").prop("checked") == false);
+			alert("댓글 허용 여부를 선택해주세요.");
+			return false;			
+		}
+		
+		// 일반 회원이 url을 알고 게시판 생성 테이블에 들어왔을 경우를 대비하여 권한 검사를 한 뒤 전송
+		var authority = $("#authorityCheck").val();
+		
+		if(authority == 'ad' || authority == 'sd' || authority == ""){
+			alert(" ==== 게시판 생성은 관리자만 할 수 있습니다 =====");
+			
+			// 메인 타이틀을 클릭하게 만들어 index 페이지로 이동시킨다.
+			$("#mainTitle").trigger("click");
+			return false;
+		}
+	
 	}
 	
 	</script>
