@@ -26,6 +26,7 @@ public class PostController {
 				@RequestParam String boardCode
 				,Model model
 			) {
+		 
 		
 		// 게시판에서 전달받은 boardCode 로깅
 		log.debug("boardCode = {}",boardCode);
