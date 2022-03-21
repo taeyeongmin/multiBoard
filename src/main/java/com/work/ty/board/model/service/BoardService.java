@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.work.ty.board.model.vo.Board;
+import com.work.ty.post.model.vo.Post;
 
 public interface BoardService {
 
@@ -18,5 +19,12 @@ public interface BoardService {
 
 	// 게시판명 중복검사
 	Board boardNameDuplicate(String boardName);
+
+	
+	// 게시물 리스트 가져오기
+	List<Post> selectPostList(Map<String, Object> param);
+
+	// 총 게시물 수 가져오기
+	int selectTotalCount(String boardCode);
 
 }

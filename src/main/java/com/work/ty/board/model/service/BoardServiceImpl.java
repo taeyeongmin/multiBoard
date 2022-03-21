@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.work.ty.board.exception.insertBoardException;
 import com.work.ty.board.model.dao.BoardDao;
 import com.work.ty.board.model.vo.Board;
+import com.work.ty.post.model.vo.Post;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,5 +53,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board boardNameDuplicate(String boardName) {
 		return boardDao.boardNameDuplicate(boardName);
+	}
+
+	// 게시물 리스트 가져오기
+	@Override
+	public List<Post> selectPostList(Map<String, Object> param) {
+		return boardDao.selectPostList(param);
+	}
+
+	// 총 게시물 수 가져오기
+	@Override
+	public int selectTotalCount(String boardCode) {
+		return boardDao.selectTotalCount(boardCode);
 	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.work.ty.board.model.service.BoardService;
 import com.work.ty.board.model.vo.Board;
+import com.work.ty.common.tyUtils;
 import com.work.ty.member.model.vo.Member;
+import com.work.ty.post.model.vo.Post;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,7 +48,7 @@ public class BoardController {
 		List<Board>boardList = boardService.boardList();
 		
 		// 가져온 boardList 로깅
-		log.debug("boardList = {}",boardList);
+		// log.debug("boardList = {}",boardList);
 		
 		// map에 보드 리스트를 넣어준 뒤 응답처리.
 		map.put("boardList",boardList);
@@ -89,10 +92,35 @@ public class BoardController {
 	// 해당 게시판 이동
 	@GetMapping("/boardMove")
 	public String getBoard(
-				@RequestParam String boardCode,
-				HttpServletRequest request
+				@RequestParam String boardCode				
+				,HttpServletRequest request
+				,Model model
+				,@RequestParam(defaultValue ="1") int cPage
+				
 			) {
 		log.debug("boardCode = {}", boardCode);
+		log.debug("cPage = {}",cPage);
+		
+		// 페이징 처리
+		int numPerPage = 5; // 한 페이지 당 게시물 수
+		int startNo = cPage * numPerPage - (numPerPage-1); 
+		int endNo = cPage * numPerPage;
+		
+		Map<String,Object> param = new HashMap<>();
+		param.put("boardCode", boardCode);
+		param.put("startNo", startNo);
+		param.put("endNo", endNo);
+		
+		// 1. 총 게시물 수 구해오기
+		int totalCount = boardService.selectTotalCount(boardCode);
+		log.debug("총 게시물 수 = {}",totalCount);
+		
+		// 2. 현재 url 구하기
+		String url = request.getRequestURI()+"?boardCode="+boardCode;
+		log.debug("현재 url = {}",url);
+		
+		// 3. 페이지 바 처리
+		String pageBar = tyUtils.pageBar(cPage,startNo,endNo,contentCount,url);
 		
 		// return 해줄 경로를 담을 변수 선언 및 초기화
 		String location = "";
@@ -101,10 +129,15 @@ public class BoardController {
 		Board board = boardService.selectBoard(boardCode);
 		
 		// 가져온 board 객체 로깅
-		log.debug("board = {}",board);
+		// log.debug("board = {}",board);
 		
 		// 가져온 board 객체에서 타입을 변수에 담아준 뒤 해당 값을 사용해 리턴 경로를 분기해준다.
 		String boardType = board.getBoardType();
+		
+		// 해당 게시판의 게시물 가져오기 (해당 게시판의 code를 넘겨줘 where절에서 사용한다.)
+		List<Post> postList = boardService.selectPostList(param);
+		
+		log.debug("postList = {}",postList);
 		
 		if("F".equals(boardType)) {
 			location = "/board/boardTypeFrame";
@@ -119,7 +152,13 @@ public class BoardController {
 		session.setAttribute("boardCode", boardCode);
 		session.setAttribute("boardYn", boardYn);
 		
+		// postList 넘기기
+		model.addAttribute("postList",postList);
 	
+		// 페이지 바 로깅
+		log.debug("페이지 바 = {}", pageBar);
+		model.addAttribute("pageBar",pageBar);
+		
 		return location;
 	}
 	

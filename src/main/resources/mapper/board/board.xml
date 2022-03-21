@@ -71,8 +71,35 @@ values(
 		
 </select>
 	
+<!-- 해당 게시판의 게시물 리스트 가져오기 -->
+<select id="selectPostList" resultType="com.work.ty.post.model.vo.Post">
+	select
+	    *
+	from
+	    (select
+	        row_number() over(order by reg_date desc) rn,
+	        p.*
+	    from
+	        post p)
+	where
+	    rn  between #{startNo} and #{endNo}
+</select>
 	
+
+<!-- 총 게시물 수 가져오기 -->
+<select id="selectTotalCount" resultType="_int">
+	select
+		count(*)
+	from
+		post
+	where
+		board_code = #{boardCode}
+</select>
 	
-	
+
+
+
+
+
 </mapper>
 

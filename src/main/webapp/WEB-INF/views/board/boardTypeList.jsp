@@ -7,6 +7,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="CORE_METHOD" name="title"/>
 </jsp:include>
+<style>
+#pageUl{display: flex;justify-content: space-evenly;width: 500px;font-size: 18px;}
+#pageUl a{font-size: 18px; font-weight: bold}
+</style>
 		<div id="cont">
 			<!-- nav 가져오기  -->
 			<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include> 
@@ -58,31 +62,27 @@
 				                	</tr>
 				                </thead>
 			               	 	<tbody>
-			                    <tr>
-				                    <td class="center"><input type="checkbox" id="ch01"><label for="ch01"></label></td>
-				                    <td><a href="#a">제목이 들어가는 자리</a></td>
-				                    <td class="center">2022/03/01</td>
-				                    <td class="center">홍길동</td>
-				                    <td class="center">1,234</td>
-			                    </tr>		    		      				                  
-			                </tbody>
+				               <!--      <tr>
+					                    <td class="center"><input type="checkbox" id="ch01"><label for="ch01"></label></td>
+					                    <td><a href="#a">제목이 들어가는 자리</a></td>
+					                    <td class="center">2022/03/01</td>
+					                    <td class="center">홍길동</td>
+					                    <td class="center">1,234</td>
+				                    </tr> -->
+				                    <c:forEach items="${postList }" var="post">
+				                    	<tr>
+				                    		<td></td>
+				                    		<td style="text-align: center">${post.title }</td>
+				                    		<td style="text-align: center">${post.regDate }</td>
+				                    		<td style="text-align: center">${post.id }</td>
+				                    		<td style="text-align: center">${post.heartCount }</td>
+				                    	</tr>
+				                    </c:forEach>		    		      				                  
+			                	</tbody>
 		                </table>
 						<div class="paging-wrap">
 							<div class="paging network">
-								<a href="#" class="direction first">이전</a>
-								<a href="#" class="direction prev">pre</a>
-								<a href="#">1</a>
-								<a href="#" class="on">2</a>
-								<a href="#">3</a>
-								<a href="#">4</a>
-								<a href="#">5</a>
-								<a href="#">6</a>
-								<a href="#">7</a>
-								<a href="#">8</a>
-								<a href="#">9</a>
-								<a href="#">10</a>
-								<a href="#" class="direction next">next</a>
-								<a href="#" class="direction last">다음</a>
+								${pageBar }
 							</div>
 						<!-- .paging-wrap 끝 -->
 						</div>

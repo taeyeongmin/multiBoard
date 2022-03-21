@@ -64,12 +64,14 @@ create sequence seq_post_post_no;
 
 
 
+
 --=====================================================
 
 select * from member;
 
 select * from board;
 
+select * from post;
 
 select
     m.id
@@ -96,7 +98,20 @@ from
         rnum between 1 and 5;
 
 
-select * from board;
+select
+    *
+from
+    (select
+        row_number() over(order by reg_date desc) rn,
+        p.*
+    from
+        post p)
+where
+    rn  between 1 and 5;
+
+
+
+
 
 
 

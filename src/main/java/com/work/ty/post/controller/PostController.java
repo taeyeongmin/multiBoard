@@ -68,7 +68,10 @@ public class PostController {
 		,@RequestParam String loginMemberId
 		,Post post
 		,RedirectAttributes redirectAttr
+		
 	) {
+	
+		
 		// 사용자 응답 메시지를 담을 변수
 		String msg="게시물을 등록했습니다.";
 		
