@@ -185,7 +185,7 @@
 		// 일반 회원이 url을 알고 게시판 생성 테이블에 들어왔을 경우를 대비하여 권한 검사를 한 뒤 전송
 		var authority = $("#authorityCheck").val();
 		
-		if(authority == 'ad' || authority == 'sd' || authority == ""){
+		if(!(authority == 'ad' || authority == 'sd')){
 			alert(" ==== 게시판 생성은 관리자만 할 수 있습니다 =====");
 			
 			// 메인 타이틀을 클릭하게 만들어 index 페이지로 이동시킨다.

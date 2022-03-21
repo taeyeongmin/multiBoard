@@ -1,34 +1,34 @@
 package com.work.ty.post.exception;
 
-public class insertPostException extends RuntimeException {
+public class InsertPostException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public insertPostException() {
+	public InsertPostException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public insertPostException(String message, Throwable cause, boolean enableSuppression,
+	public InsertPostException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public insertPostException(String message, Throwable cause) {
+	public InsertPostException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public insertPostException(String message) {
+	public InsertPostException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public insertPostException(Throwable cause) {
+	public InsertPostException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

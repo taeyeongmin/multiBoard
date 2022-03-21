@@ -42,6 +42,27 @@ CREATE TABLE  board (
 create sequence seq_board_code;
 
 
+--Post(게시물) 테이블 생성
+create table post (
+    post_no number
+    ,id varchar2(30)
+    ,board_code varchar2(20)
+    ,reg_date date default sysdate 
+    ,heart_count number default 0 not null
+    ,title varchar2(30) not null
+    ,content varchar2(2000) not null
+    
+    ,constraint pk_post_post_no primary key(post_no)
+    ,constraint fk_post_id foreign key(id) references member(id)
+    ,constraint fk_post_board_code foreign key(board_code) references board(board_code)
+    
+);
+
+-- post_no seq 생성
+create sequence seq_post_post_no;
+
+
+
 
 --=====================================================
 
@@ -64,7 +85,15 @@ where
     m.id='sAdmin'
 
 
-
+select 
+    * 
+from
+    (select
+        row_number() over(order by enroll_date desc) rnum, m.*
+    from 
+        member m ) m
+    where 
+        rnum between 1 and 5;
 
 
 select * from board;
